@@ -1,31 +1,35 @@
 ﻿using System;
+using System.IO;
 using System.Text.Json;
 
-public class BankTransferConfig
+internal class BankTransferConfig
 {
-	public class tf
-	{
-		public int threshold { get; set; }
-		public int low_fee { get; set; }
-        public int high_fee { get; set; }
-    }
-	public class conf
-	{
-		public string en { get; set; }
-        public string id { get; set; }
-    }
 	public string lang { get; set; }
 	public tf transfer { get; set; }
 	public string[] methods { get; set; }
 	public conf confirmation { get; set; }
 
+    public class tf
+    {
+        public int threshold { get; set; }
+        public int low_fee { get; set; }
+        public int high_fee { get; set; }
+    }
+    public class conf
+    {
+        public string en { get; set; }
+        public string id { get; set; }
+    }
+
     public BankTransferConfig()
 	{
 		lang = "en";
+        transfer = new tf();
 		transfer.threshold = 25000000;
 		transfer.low_fee = 6500;
 		transfer.high_fee = 15000;
 		methods = new string[] { "RTO (real-time)", "SKN", "RTGS", "BI FAST" };
+        confirmation = new conf();
 		confirmation.en = "yes";
 		confirmation.id = "ya";
 	}
